@@ -1,0 +1,113 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import sys
+import pygame
+from pygame.locals import *
+import math
+
+WHITE = 255,255,255
+GREEN = 0,255,0
+BLACK = 0,0,0
+BLUE  = 0,0,255
+RED   = 255,0,0
+
+
+FPS = 23
+
+size = width, height = 1200, 1000
+
+VISU_SCALE = 0.01
+
+STEPS = 3600.
+
+point_size = (5,5) # size of rects representing points in pixels
+
+
+screen = pygame.display.set_mode(size)
+
+pygame.display.set_caption("pygame.draw functions ~ examples")
+pygame.init()
+pygame.display.init()
+
+
+
+
+def render( points ):
+
+    tempsurface = pygame.Surface((size))
+
+    tempsurface.fill( WHITE )
+
+    for xy in points:
+        x = width/2. + xy[0] - int(point_size[0]/2.)
+        y = height/2. + xy[1] - int(point_size[1]/2.)
+
+        pygame.draw.rect( tempsurface, BLACK, (x,y, point_size[0],point_size[1]) )
+
+        screen.blit(tempsurface, (0,0) )
+
+    return
+
+
+     
+clock = pygame.time.Clock()  
+
+inputfile = None
+
+for arg in sys.argv:
+    if ".txt" in arg:
+        try:
+            inputfile = open(arg, "r")
+        except:
+            print("Could not open {}".format(arg))
+            sys.exit(-1)
+
+if inputfile==None:
+    print("\nERROR: No Input File sepcified! Use '-r' to read the random-file or pass file as argument!\n")
+    sys.exit(-1)
+
+while True:
+
+    points = []
+
+    inputfile.seek(0)
+    for i, line in enumerate(inputfile.readlines()):
+
+        alpha = (math.pi*2/STEPS) * i
+
+        try:
+            dist = int( line.replace("\n", "") )
+            x = math.sin(alpha) * dist * VISU_SCALE
+            y = math.cos(alpha) * dist * VISU_SCALE
+            #points.append( [float(xy[0])*VISU_SCALE,float(xy[1])*VISU_SCALE] )
+            points.append( [x,y] )
+        except:
+            pass
+            #print("Could not convert: '{}'".format(repr(line)))
+
+
+    last_ms = clock.tick( FPS )
+    pygame.display.set_caption("LaserSensorVisu | FPS {:.3f}".format(1000./last_ms))
+
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.display.quit()
+
+        elif event.type == KEYDOWN:
+            if event.key == K_DOWN:
+                VISU_SCALE -= 0.1
+            elif event.key == K_UP:
+                VISU_SCALE += 0.1
+            elif event.key == K_LEFT:
+                VISU_SCALE += 0.01
+            elif event.key == K_RIGHT:
+                VISU_SCALE -= 0.01
+
+
+
+    render( points )
+    
+    pygame.display.update()
+
+inputfile.close()

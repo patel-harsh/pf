@@ -1,0 +1,64 @@
+# depslib dependency file v1.0
+1472131928 source:/home/voelar4k/workspace/r2000/src/command_interface.cpp
+	<command_interface.h>
+	<iostream>
+	<boost/asio.hpp>
+	<boost/property_tree/json_parser.hpp>
+
+1472129322 /home/voelar4k/workspace/r2000/include/command_interface.h
+	<string>
+	<map>
+	<boost/property_tree/ptree.hpp>
+	<protocol_info.h>
+
+1472130013 /home/voelar4k/workspace/r2000/include/protocol_info.h
+	<vector>
+
+1472136790 source:/home/voelar4k/workspace/r2000/src/data_receiver.cpp
+	"data_receiver.h"
+	<chrono>
+	<ctime>
+
+1472129986 /home/voelar4k/workspace/r2000/include/data_receiver.h
+	<string>
+	<iostream>
+	<mutex>
+	<condition_variable>
+	<deque>
+	<array>
+	<boost/bind.hpp>
+	<boost/asio.hpp>
+	<boost/thread.hpp>
+	<boost/circular_buffer.hpp>
+	<packet_structure.h>
+
+1472130034 /home/voelar4k/workspace/r2000/include/packet_structure.h
+	<cstdint>
+	<vector>
+
+1472129986 source:/home/voelar4k/workspace/r2000/src/r2000_driver.cpp
+	<ctime>
+	<r2000_driver.h>
+	<packet_structure.h>
+	<command_interface.h>
+	<data_receiver.h>
+
+1472129986 /home/voelar4k/workspace/r2000/include/r2000_driver.h
+	<string>
+	<vector>
+	<map>
+	<boost/optional.hpp>
+	<protocol_info.h>
+	<packet_structure.h>
+
+1474384770 source:/home/voelar4k/workspace/r2000/src/main.cpp
+	"r2000_driver.h"
+	<iostream>
+	<math.h>
+	<vector>
+	<iomanip>
+	<sstream>
+	<fstream>
+	<GL/glut.h>
+	<GL/glu.h>
+

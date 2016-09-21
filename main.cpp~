@@ -1,0 +1,28 @@
+#include <iostream>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/ioctl.h>
+#include <netinet/in.h>
+#include <net/if.h>
+#include <arpa/inet.h>
+#include "http_command_interface.h"
+#include "packet_structure.h"
+#include "protocol_info.h"
+#include "r2000_driver.h"
+
+using namespace std;
+
+int main()
+{
+      //! Release handle
+    bool releaseHandle( const std::string& handle );
+
+    //! Initiate output of scan data
+    bool startScanOutput( const std::string& handle );
+
+  return 0;
+}
+
+
